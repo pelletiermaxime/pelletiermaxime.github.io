@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Installing laconi.ca on nginx</title>
+   <meta name="author" content="Maxime Pelletier" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+<div class="site">
+  <div class="title">
+    <a href="/">Maxime Pelletier</a>
+    <a class="extra" href="/">home</a>
+  </div>
+
+  <div id="post">
+<h1 id="installing-laconica-on-nginx">Installing laconi.ca on nginx</h1>
+
+<p>A few weeks ago I wanted to install Laconi.ca and start my own microblogging instance. Of course by now you know that I use and 
+really like nginx, so I looked for instructions on how to install it on this http server. All I found was tutorials for apache 
+and nginx wasn’t mentionned a single time, so I started doing it myself.
+Here is my config :</p>
+
+<pre><code>server {
+            listen 80;
+            server_name     symphoni.ca;
+            root /path/to/my/htdocs;
+            index index.php;
+            location ~ \.php$ {
+                    include /etc/nginx/fastcgi_params;
+                    fastcgi_pass  127.0.0.1:1026;
+                    fastcgi_index index.php;
+            }
+            location / {
+                    try_files $uri $uri/ @laconica;
+            }
+            location @laconica {
+                    rewrite ^(.+)$ /index.php?p=$1 last;
+            }
+    }
+</code></pre>
+
+<p>This config was tested only on nginx &gt; 0.7.30. It should work on &gt;= 0.6.36 because it now has try_files support, but I haven’t 
+tried it.</p>
+
+<p>I also suggest using laconica &gt;= 0.7.3 because it fixes some bugs in the redirects. Also, this config works <strong>only</strong> if you put 
+the config
+	$config[‘site’][‘fancy’] = true;
+in the config.php. I couldn’t get the not fancy urls to work, but I guess this isn’t a problem :p.
+If you need help just post a comment or contact me on identi.ca/symphoni.ca.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>10 Dec 2011</span> &raquo; <a href="/2011/12/10/Dislike-About_web.html">What I don't like about web programming</a></li>
+    
+      <li><span>24 Jun 2009</span> &raquo; <a href="/2009/06/24/Laconica-Stats-Plugin-3.html">Stats plugin for laconica version 0.3</a></li>
+    
+      <li><span>16 Jun 2009</span> &raquo; <a href="/2009/06/16/Laconica-Stats-Plugin-2.html">Stats plugin for laconica version 0.2</a></li>
+    
+  </ul>
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript" src="http://disqus.com/forums/pelletiermaxime/embed.js"></script>
+<noscript><a href="http://pelletiermaxime.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+
+
+
+  <div class="footer">
+    <div class="contact">
+      <p>
+        Maxime Pelletier<br />
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="https://twitter.com/pelletiermaxime">twitter.com/pelletiermaxime</a><br />
+      </p>
+    </div>
+    <div class="rss">
+      <a href="http://pelletiermaxime.info/atom.xml">
+        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

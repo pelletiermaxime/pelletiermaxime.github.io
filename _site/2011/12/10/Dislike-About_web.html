@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>What I don't like about web programming</title>
+   <meta name="author" content="Maxime Pelletier" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+<div class="site">
+  <div class="title">
+    <a href="/">Maxime Pelletier</a>
+    <a class="extra" href="/">home</a>
+  </div>
+
+  <div id="post">
+<h1 id="what-i-dont-like-about-web-programming">What I don’t like about web programming</h1>
+
+<p>I have been doing web programming as my job for the past 6 years now. The problem is that for the first 5 I was working on my own php website built from scratch, with my own very simple framework. My new job forced me to work in different technologies like Magento, Alfresco, Typo3, Symfony, Wordpress and mostly on Koha, a perl Library management system. Working with all those very different technologies and very different way of thinking to ultimately output html code made me think about what I like about web programming and what I really don’t like. I ranted about it on identi.ca yesterday, but you know how hard it is to really say anything in 140 characters. Here are a few toughts.</p>
+
+<ul>
+  <li>
+    <p>I like programming. Sure that may seem obvious, but sometimes I feel like frameworks are written to do so much stuff automagically that what you end up doing isn’t writting code, it’s finding how to do something in the documentation and then configuring the system to do it. Symfony is a good exemple of that problem imo. You can generate so much code that when you have to do something the developpers didn’t think about, you are completly lost trying to write it because at this point it almost doesn’t look like good old php.</p>
+  </li>
+  <li>
+    <p>ORM. I read a few blog posts and comments on the issue of should you use something that maps all your database around objects so that you don’t have to learn SQL and instead use native code to query your data. I am on the side of the ORM haters. My argument against using an ORM is basically that none is perfect. I haven’t yet encountered a system where you could do every single query you wanted to do without having to break out of the ORM and manually write a query. Worst, some even implement their own query language (DQL…), making it something more you have to learn instead of using SQL, something that every programmer knows pretty well. A side effect of using ORMs is also that they always end up doing way more queries than you would if you only wrote what you needed. Both typo3 and symfony often do hundreds of queries just to show the main page of the website. Instead of optimizing the code, people end up using memcached basically as a query buffer to have website that load in less than 5 seconds.</p>
+  </li>
+  <li>
+    <p>Incredibly complicated OO code. To explain this I will take an exemple of the exact opposite : Wordpress. What I really like about wordpress is that you can open up the index.php, read the code from line to line until you end up on the footer. It’s just simple and that makes it very easy to install, use, learn and very fast because it often only needs to read a few files to generate a page. Sure, you do lose a lot of the power of object oriented programming, but there are hooks for everything that makes wordpress very powerful as you can see from the number of plugins for it. I like to read the code of frameworks or CMS I have to use, so I did the same when I started working with Magento. It didn’t take long that I just stopped reading before my brain exploded. A class that extends another that extend another, etc, for dozens of layers of code that can be redefined anywhere. What I ended up doing most of the time is just looking at the html code I had to modify and than searching for it in the thousands of php files to find it because it’s so huge that you just can’t guess where anything could be. I tried looking at the xdebug output or a page request form Magento and I tought KCachegrind would crash from having so many function calls.</p>
+  </li>
+  <li>
+    <p>I hate how complicated it is to do a website these days. For some reason it seems that every page needs 6000 lines of css, hundred images and 30 javascript files because everything needs to have round corners, gradients, transparency, widgets and animations. Of course you need to do it in html5, don’t use tables, don’t put javascript or css inline, make it work in a dozen of browsers and of course you need to have fallbacks for those that don’t enable javascript or css or images or can’t use a mouse or even zoom at 200% on your page. It’s just ridiculous. Looks at this blog. Is it the best looking blog on earth ? It sure is not. What it is is fast, simple and as easy as it can be to access the content. I have having to skip intros, stop animations, pause videos and download many megs of code just to have the menu of a restaurant (and it’s always in a 10 megs pdf). Content is what matters and on most websites I feel like it’s the last priority. What should be the priority is getting to the information you want as fast as possible.</p>
+  </li>
+</ul>
+
+<p>Do you disagree with anything I said? Feel free to post what you like and don’t like in the comments below.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Jun 2009</span> &raquo; <a href="/2009/06/24/Laconica-Stats-Plugin-3.html">Stats plugin for laconica version 0.3</a></li>
+    
+      <li><span>16 Jun 2009</span> &raquo; <a href="/2009/06/16/Laconica-Stats-Plugin-2.html">Stats plugin for laconica version 0.2</a></li>
+    
+      <li><span>04 May 2009</span> &raquo; <a href="/2009/05/04/Laconica-Stats-Plugin.html">Stats plugin for laconica</a></li>
+    
+  </ul>
+</div>
+<div id="disqus_thread"></div>
+<script type="text/javascript" src="http://disqus.com/forums/pelletiermaxime/embed.js"></script>
+<noscript><a href="http://pelletiermaxime.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+
+
+
+  <div class="footer">
+    <div class="contact">
+      <p>
+        Maxime Pelletier<br />
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="https://twitter.com/pelletiermaxime">twitter.com/pelletiermaxime</a><br />
+      </p>
+    </div>
+    <div class="rss">
+      <a href="http://pelletiermaxime.info/atom.xml">
+        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
