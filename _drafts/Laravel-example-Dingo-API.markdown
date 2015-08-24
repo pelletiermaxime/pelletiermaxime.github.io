@@ -1,6 +1,6 @@
 ---
 layout: post
-title: API Blueprint [2/4]
+title: Laravel example - Dingo API [4/4]
 ---
 
 # {{ page.title }}
